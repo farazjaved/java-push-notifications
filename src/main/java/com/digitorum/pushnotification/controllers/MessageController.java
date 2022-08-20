@@ -17,8 +17,8 @@ public class MessageController {
     }
 
     @GetMapping("send")
-    public void sendMessage(@RequestParam String token){
-        messageService.sendMessage(token);
+    public void sendMessage(){
+        messageService.sendMessage();
     }
 
 
