@@ -46,11 +46,12 @@ public class MessageService {
         }
     }
 
-    public void sendMessage() {
+    public void sendMessage(String token) {
+
+        if (token == null) return;
 
         String title = "Test Title";
         String message = "This is a test notification";
-        String token = "token";
 
         Message.Builder messageBuilder = Message.builder();
 

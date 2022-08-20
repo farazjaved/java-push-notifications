@@ -2,6 +2,7 @@ package com.digitorum.pushnotification.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.digitorum.pushnotification.services.MessageService;
 
@@ -16,8 +17,8 @@ public class MessageController {
     }
 
     @GetMapping("send")
-    public void sendMessage(){
-        messageService.sendMessage();
+    public void sendMessage(@RequestParam String token){
+        messageService.sendMessage(token);
     }
 
 
