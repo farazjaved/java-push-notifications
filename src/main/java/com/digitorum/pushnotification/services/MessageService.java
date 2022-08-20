@@ -50,12 +50,12 @@ public class MessageService {
 
         String title = "Test Title";
         String message = "This is a test notification";
-        String topic = "topic";
+        String token = "token";
 
         Message.Builder messageBuilder = Message.builder();
 
         messageBuilder
-                .setTopic(topic)
+                .setToken(token)
                 .setNotification(
                         Notification.builder()
                                 .setTitle(title)
