@@ -13,7 +13,7 @@ public class MessageService {
         this.firebaseMessageUtil = firebaseMessageUtil;
     }
 
-    public void sendMessage() {
+    public void sendMessageViaHttp() {
 
         Notification notification = new Notification();
         notification.setTitle("New Order");
@@ -22,6 +22,20 @@ public class MessageService {
 
         try {
             firebaseMessageUtil.sendMessageViaHttp(notification);
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void sendMessageViaSDK() {
+
+        Notification notification = new Notification();
+        notification.setTitle("New Order");
+        notification.setBody("A new order received of worth 50$");
+        notification.setTopic("new-orders");
+
+        try {
+            firebaseMessageUtil.sendMessageViaSDK(notification);
         } catch (Exception e){
             System.out.println(e.getMessage());
         }

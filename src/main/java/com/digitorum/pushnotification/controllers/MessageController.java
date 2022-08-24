@@ -15,9 +15,14 @@ public class MessageController {
         this.messageService = messageService;
     }
 
-    @GetMapping("send")
-    public void sendMessage(){
-        messageService.sendMessage();
+    @GetMapping("/http/send")
+    public void sendMessageViaHttp(){
+        messageService.sendMessageViaHttp();
+    }
+
+    @GetMapping("/sdk/send")
+    public void sendMessageViaSDK(){
+        messageService.sendMessageViaSDK();
     }
 
 
