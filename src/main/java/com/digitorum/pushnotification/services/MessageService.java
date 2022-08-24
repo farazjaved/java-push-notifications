@@ -1,5 +1,6 @@
 package com.digitorum.pushnotification.services;
 
+import com.digitorum.pushnotification.models.Notification;
 import com.digitorum.pushnotification.utils.FirebaseMessageUtil;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +15,13 @@ public class MessageService {
 
     public void sendMessage() {
 
+        Notification notification = new Notification();
+        notification.setTitle("New Order");
+        notification.setBody("A new order received of worth 50$");
+        notification.setTopic("new-orders");
+
         try {
-            firebaseMessageUtil.sendCommonMessage();
+            firebaseMessageUtil.sendMessageViaHttp(notification);
         } catch (Exception e){
             System.out.println(e.getMessage());
         }

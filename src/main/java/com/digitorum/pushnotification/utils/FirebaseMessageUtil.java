@@ -1,5 +1,6 @@
 package com.digitorum.pushnotification.utils;
 
+import com.digitorum.pushnotification.models.Notification;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -71,23 +72,14 @@ public class FirebaseMessageUtil {
         }
     }
 
-    public void sendCommonMessage() throws IOException {
-        JsonObject notificationMessage = buildNotificationMessage();
-        System.out.println("FCM request body for message using common notification object:");
-        prettyPrint(notificationMessage);
-        sendMessage(notificationMessage);
-    }
-
-    private JsonObject buildNotificationMessage() {
+    private JsonObject buildNotificationMessage(Notification notification) {
         JsonObject jNotification = new JsonObject();
-        String title = "FCM Notification";
-        jNotification.addProperty("title", title);
-        String body = "Notification from FCM";
-        jNotification.addProperty("body", body);
+        jNotification.addProperty("title", notification.getTitle());
+        jNotification.addProperty("body", notification.getBody());
 
         JsonObject jMessage = new JsonObject();
         jMessage.add("notification", jNotification);
-        jMessage.addProperty("topic", "news");
+        jMessage.addProperty("topic", notification.getTopic());
 
         JsonObject jFcm = new JsonObject();
         jFcm.add(MESSAGE_KEY, jMessage);
@@ -107,6 +99,13 @@ public class FirebaseMessageUtil {
     private void prettyPrint(JsonObject jsonObject) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         System.out.println(gson.toJson(jsonObject) + "\n");
+    }
+
+    public void sendMessageViaHttp(Notification notification) throws IOException {
+        JsonObject notificationMessage = buildNotificationMessage(notification);
+        System.out.println("FCM request body for message using common notification object:");
+        prettyPrint(notificationMessage);
+        sendMessage(notificationMessage);
     }
 
 }
