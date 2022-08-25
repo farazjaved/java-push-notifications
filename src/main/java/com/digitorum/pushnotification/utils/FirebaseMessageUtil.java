@@ -29,8 +29,7 @@ public class FirebaseMessageUtil {
 
     @Value("${application.firebase.projectId}")
     private String PROJECT_ID;
-    @Value("${application.firebase.serviceKeyFilePath}")
-    private String firebaseServiceKeyFilePath;
+    private final String firebaseServiceKeyFilePath = "serviceKey.json";
     private final String MESSAGING_SCOPE = "https://www.googleapis.com/auth/firebase.messaging";
     private final String[] SCOPES = { MESSAGING_SCOPE };
 
